@@ -1,0 +1,19 @@
+﻿# Salesforce CLI local files and authentication
+.sf/
+.sfdx/
+
+# Node.js dependencies
+node_modules/
+
+# Environment variables and secrets
+.env
+.env.*
+!.env.example
+
+# Logs and test output
+*.log
+coverage/
+
+# Operating system files
+.DS_Store
+Thumbs.db
