@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Validate_Target_Amount</fullName>
+    <active>true</active>
+    <description>Ensures that the assigned monthly sales target is greater than zero.</description>
+    <errorConditionFormula>OR(
+    ISBLANK(Target_Amount__c),
+    Target_Amount__c &lt;= 0
+)</errorConditionFormula>
+    <errorDisplayField>Target_Amount__c</errorDisplayField>
+    <errorMessage>Target Amount is required and must be greater than zero.</errorMessage>
+</ValidationRule>

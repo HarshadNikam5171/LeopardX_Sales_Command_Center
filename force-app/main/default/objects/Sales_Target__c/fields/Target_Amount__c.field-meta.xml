@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Target_Amount__c</fullName>
+    <description>Monthly sales target amount assigned to the employee.</description>
+    <inlineHelpText>Enter the employee&apos;s assigned monthly sales target in INR.</inlineHelpText>
+    <label>Target Amount</label>
+    <precision>18</precision>
+    <required>false</required>
+    <scale>2</scale>
+    <trackTrending>false</trackTrending>
+    <type>Currency</type>
+</CustomField>

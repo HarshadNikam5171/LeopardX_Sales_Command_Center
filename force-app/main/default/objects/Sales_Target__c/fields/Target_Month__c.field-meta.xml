@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<CustomField xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Target_Month__c</fullName>
+    <description>Month for which the employee&apos;s sales target is assigned.</description>
+    <inlineHelpText>Select the first day of the target month.</inlineHelpText>
+    <label>Target Month</label>
+    <required>false</required>
+    <trackTrending>false</trackTrending>
+    <type>Date</type>
+</CustomField>

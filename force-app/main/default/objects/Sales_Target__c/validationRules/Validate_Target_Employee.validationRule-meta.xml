@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Validate_Target_Employee</fullName>
+    <active>true</active>
+    <description>Ensures every Sales Target record is assigned to an employee.</description>
+    <errorConditionFormula>ISBLANK(Target_Employee__c)</errorConditionFormula>
+    <errorDisplayField>Target_Employee__c</errorDisplayField>
+    <errorMessage>Please select an employee before saving the Sales Target record.</errorMessage>
+</ValidationRule>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ValidationRule xmlns="http://soap.sforce.com/2006/04/metadata">
+    <fullName>Validate_Target_Month</fullName>
+    <active>true</active>
+    <description>Ensures the target month is populated and always represents the first day of the month.</description>
+    <errorConditionFormula>OR(
+    ISBLANK(Target_Month__c),
+    DAY(Target_Month__c) &lt;&gt; 1
+)</errorConditionFormula>
+    <errorDisplayField>Target_Month__c</errorDisplayField>
+    <errorMessage>Target Month is required. Please select the first day of the month.</errorMessage>
+</ValidationRule>
