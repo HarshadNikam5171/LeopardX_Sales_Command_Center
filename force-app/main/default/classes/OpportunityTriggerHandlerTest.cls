@@ -262,4 +262,93 @@ Map<Id, Account> accounts = new Map<Id, Account>([
             'A Closed Won Opportunity must not be reopened.'
         );
     }
+
+
+    // TEST 6: Handle null and empty Account ID sets
+    @isTest
+    static void testEmptyAccountIds() {
+
+        Test.startTest();
+
+        List<AggregateResult> nullResults =
+            OpportunityTriggerHandler.getWonOpportunitySummaries(null);
+
+        List<AggregateResult> emptyResults =
+            OpportunityTriggerHandler.getWonOpportunitySummaries(
+                new Set<Id>()
+            );
+
+        Test.stopTest();
+
+        System.assertEquals(
+            0,
+            nullResults.size(),
+            'Null Account IDs should return an empty result.'
+        );
+
+        System.assertEquals(
+            0,
+            emptyResults.size(),
+            'Empty Account IDs should return an empty result.'
+        );
+    }
+
+    // TEST 7: Handle Closed Won Opportunity with null Amount
+    @isTest
+    static void testNullAmountWonOpportunitySummary() {
+
+        Account acc = createAccount('Null Amount Test Account');
+
+        Opportunity opp = createOpportunity(
+            acc.Id,
+            'Null Amount Won Deal',
+            'Closed Won',
+            null,
+            Date.today()
+        );
+
+        Test.startTest();
+        insert opp;
+        Test.stopTest();
+
+        Account updatedAccount = [
+            SELECT Total_Won_Revenue__c,
+                   Won_Opportunity_Count__c,
+                   Last_Won_Date__c
+            FROM Account
+            WHERE Id = :acc.Id
+        ];
+
+        System.assertEquals(
+            Decimal.valueOf('0'),
+            updatedAccount.Total_Won_Revenue__c,
+            'Null revenue should be stored as zero.'
+        );
+
+        System.assertEquals(
+            Decimal.valueOf('1'),
+            updatedAccount.Won_Opportunity_Count__c,
+            'The Closed Won Opportunity should still be counted.'
+        );
+
+        System.assertEquals(
+            Date.today(),
+            updatedAccount.Last_Won_Date__c
+        );
+    }
+
+    // TEST 8: Handle null and empty Account IDs during summary update
+    @isTest
+    static void testUpdateAccountSummariesWithEmptyIds() {
+
+    Test.startTest();
+
+    OpportunityTriggerHandler.updateAccountSummaries(null);
+    OpportunityTriggerHandler.updateAccountSummaries(new Set<Id>());
+
+    Test.stopTest();
+
+    System.assert(true, 'Empty Account ID sets should return safely.');
+    }
+
 }
